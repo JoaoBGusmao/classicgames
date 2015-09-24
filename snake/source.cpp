@@ -206,7 +206,7 @@ int callMenu() {
 	system("cls");
 	if(option == 1) startGame();
 	else if(option == 2) {
-		printf("\n\n\n\n\n\thttps://github.com/JoaoBGusmao/classicgames/snake/source.cpp");
+		printf("\n\n\n\n\n\thttps://github.com/JoaoBGusmao/classicgames/snak/");
 		getch();
 		system("cls");
 		return callMenu();
