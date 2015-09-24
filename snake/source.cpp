@@ -7,7 +7,7 @@
 typedef struct Pieces {
 	int x;
 	int y;
-};
+} Pieces;
 
 Pieces pi[250];
 
@@ -22,7 +22,8 @@ int writeScore(int score) {
 
 int getNumOfElements() {
 	int count = 0;
-	for(int i=0;i<250;i++) {
+	int i=0;
+	for(i=0;i<250;i++) {
 		if(pi[i].x > 0) count++;
 	}
 	return count;
@@ -34,7 +35,8 @@ void removePiece(int *size) {
 }
 
 void registerPiece(int x, int y,int *size) {
-	for(int i=*size;i!=0;i--) {
+	int i;
+	for(i=*size;i!=0;i--) {
 		pi[i].x = pi[i-1].x;
 		pi[i].y = pi[i-1].y;
 	}
@@ -44,7 +46,8 @@ void registerPiece(int x, int y,int *size) {
 
 int colideEvent(int nextX,int nextY,int *size) {
 	if(nextX < 4 || nextX > 74 || nextY < 4 || nextY > 22) return 1;
-	for(int i=0;i<*size;i++) {
+	int i;
+	for(i=0;i<*size;i++) {
 		if(nextX == pi[i].x && nextY == pi[i].y) return 1;
 	}
 	return 0;
@@ -96,17 +99,19 @@ int buildScenery() {
 	
 	gotoxy(3,3);
 	//Constrói as paredes de cima e baixo
-	for(int i=0;i<148;i++) {
+	int i;
+	for(i=0;i<148;i++) {
 		if(i == 74) gotoxy(3,23);
 		printf("%c",219);
 	}
 	//Constrói as paredes laterais
 	gotoxy(3,3);
-	for(int i=0;i<20;i++) {
+	
+	for(i=0;i<20;i++) {
 		gotoxy(3,3+i);
 		printf("%c",219);
 	}
-	for(int i=0;i<20;i++) {
+	for(i=0;i<20;i++) {
 		gotoxy(76,3+i);
 		printf("%c",219);
 	}
@@ -153,7 +158,8 @@ int startGame() {
 	registerPiece(curx,cury,&size);
 	buildScenery();
 	
-	for(int i=0;i<260;i++) { //Para achar códigos
+	int i;
+	for(i=0;i<260;i++) { //Para achar códigos
 		//printf("code: %d %c\n",i,i);
 	}
 	int exTimes = 0;
@@ -177,7 +183,8 @@ int startGame() {
 		if(exTimes > 50 && 1!=1) {
 			system("cls");
 			gotoxy(0,0);
-			for(int i=0;i<size;i++) {
+			int i;
+			for(i=0;i<size;i++) {
 				printf("Pos x: %d ------- Pos Y: %d\n",pi[i].x,pi[i].y);
 			}
 			return 0;
@@ -199,7 +206,7 @@ int callMenu() {
 	system("cls");
 	if(option == 1) startGame();
 	else if(option == 2) {
-		printf("\n\n\n\n\n\thttps://github.com/JoaoBGusmao/classicgames/snake");
+		printf("\n\n\n\n\n\thttps://github.com/JoaoBGusmao/classicgames/snake/source.cpp");
 		getch();
 		system("cls");
 		return callMenu();
