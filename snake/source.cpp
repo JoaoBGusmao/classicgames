@@ -4,7 +4,7 @@
 #include<conio.h>
 #include <time.h>
 
-typedef struct Pieces {
+typedef struct {
 	int x;
 	int y;
 } Pieces;
@@ -96,6 +96,8 @@ int drawnNext(int *curx,int *cury,char *direction,int *size,int *colide,int food
 int buildScenery() {
 	gotoxy(3,1);
 	printf("SCORE: 0");
+	gotoxy(63,1);
+	printf("PAUSE GAME (P)");
 	
 	gotoxy(3,3);
 	//Constrói as paredes de cima e baixo
@@ -138,6 +140,14 @@ void listenKeyboard(char *direction, char *newDirection) {
 	if(kbhit()){
         *newDirection = getch();
 		if( (*newDirection == 72 && *direction != 80) || (*newDirection == 80 && *direction != 72) || (*newDirection == 75 && *direction != 77) || (*newDirection == 77 && *direction != 75)) *direction = *newDirection;
+		else if(*newDirection == 112) {
+			gotoxy(63,1);
+			printf("   GAME PAUSED");
+			getch();
+			gotoxy(63,1);
+			printf("PAUSE GAME (P)");
+		}
+		
     }
 }
 
@@ -174,7 +184,7 @@ int startGame() {
 		listenKeyboard(&direction,&newDirection);
 		
 		if(colide == 1) {
-			gotoxy(23,1);
+			gotoxy(25,1);
 			printf("GAME OVER. Pressione Enter\n");
 			getch();
 			callMenu();
@@ -206,7 +216,7 @@ int callMenu() {
 	system("cls");
 	if(option == 1) startGame();
 	else if(option == 2) {
-		printf("\n\n\n\n\n\thttps://github.com/JoaoBGusmao/classicgames/snak/");
+		printf("\n\n\n\n\n\thttps://github.com/JoaoBGusmao/classicgames/snake");
 		getch();
 		system("cls");
 		return callMenu();
